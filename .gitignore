@@ -3,6 +3,8 @@
 *.jl.mem
 /docs/build/
 
+Manifest.toml
+
 # Security
 password.jl
 neidadmincookie.txt

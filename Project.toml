@@ -1,0 +1,7 @@
+name = "NeidArchive"
+uuid = "b2c48323-12ae-41a0-acdb-062d24b276bc"
+authors = ["Eric Ford"]
+version = "0.0.1"
+
+[compat]
+julia = "1.5"

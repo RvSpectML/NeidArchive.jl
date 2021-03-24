@@ -1,1 +1,5 @@
 # NeidArchive [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://RvSpectML.github.io/NeidArchive.jl/stable) [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://RvSpectML.github.io/NeidArchive.jl/dev) [![Build Status](https://github.com/RvSpectML/NeidArchive.jl/workflows/CI/badge.svg)](https://github.com/RvSpectML/NeidArchive.jl/actions) [![Coverage](https://codecov.io/gh/RvSpectML/NeidArchive.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/RvSpectML/NeidArchive.jl)
+
+NeidArchive.jl is a Julia wrapper for [pyNEID](https://pyneid.readthedocs.io/en/latest/).  It provides a convenient, simple API for querying and downloading data files from the [NEID archive](neid.ipac.caltech.edu) and [NEID Solar archive](https://neid.ipac.caltech.edu/search_solar.php) hosted by the [NASA Exoplanet Science Institute (NExScI)](https://nexsci.caltech.edu/).  
+
+Currently, NeidArchive.jl has limited features (i.e., what the developer needs).  Please feel free to submit PRs to increase the completeness of NeidArchive.jl relative to pyNEID.

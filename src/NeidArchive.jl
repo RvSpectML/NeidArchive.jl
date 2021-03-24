@@ -24,30 +24,34 @@ module NeidArchive
   end
   =#
 
-  """ login(;userid, password, cookiepath)
+  """
+      login(;userid, password, cookiepath)
   Login to the NEID archive at NExScI.  All three named arguments are required.  Login credentials stored in cookiepath.
   """
   function login(;userid::String, password::String, cookiepath::String)
     archive.login(userid=userid, password=password, cookiepath=cookiepath) #, debugfile="./archive.debug")
   end
 
-  """ query_criteria(param::Dict{String,String}; cookiepath, [outpath] )
+  """
+      query_criteria(param::Dict{String,String}; cookiepath, [outpath] )
   Query the NEID archive using constraints in param.  Named argument cookiepath is required.
   """
   function query_criteria(param::Dict{String,String}; cookiepath::String, outpath::String=".", format::String = default_format)
     archive.query_criteria(param, cookiepath=cookiepath, format=format, outpath=outpath)
   end
 
-  """ query(param::Dict{String,String}; cookiepath, [outpath] )
+  """
+      query(param::Dict{String,String}; cookiepath, [outpath] )
   Shorthaned for query_criteria """
   query = query_criteria
 
 # TODO: Implement query_adql, query_datetime, query_object, query_piname, query_program, query_qobject
 
 
-  """  download(filename::String, datalevel::String; format::String = default_format, outdir::String=".", cookiepath::String = "", start_row::Integer=1, end_row::Integer=1000)
-    Download files returned from a query of the NEID archive.
-    Named argument cookiepath is required.
+  """
+      download(filename, datalevel; cookiepath, [format, outdir, start_row, end_row] )
+  Download files returned from a query of the NEID archive.
+  Named argument cookiepath is required.
   """
   function download(filename::String, datalevel::String; format::String = default_format, outdir::String=".", cookiepath::String = "", start_row::Integer=1, end_row::Integer=1000)
     @assert datalevel ∈ valid_datalevel
@@ -79,6 +83,7 @@ module NeidArchive
     datetime_range(DateTime(start), DateTime(year(stop),month(stop),day(stop),23,59,59))
   end
 
+  """ Create a date range string in PyNeid format for one day."""
   function datetime_one_day(day::Date)
     datetime_range(day, day)
   end

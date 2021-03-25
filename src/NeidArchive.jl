@@ -88,6 +88,16 @@ module NeidArchive
     datetime_range(day, day)
   end
 
+  """ Create a date range string in PyNeid format for 24 hours starting at given DateTime."""
+  function datetime_one_day(start::DateTime)
+    datetime_range(start, start+Dates.Day(1))
+  end
+
+  """ Create a date range string in PyNeid format for 24 hours starting at 15:00 on given Date."""
+  function datetime_one_day_solar(start::Date)
+    datetime_one_day(DateTime(start)+Dates.Hour(15))
+  end
+
   """ Create a date range string in PyNeid format starting at 00:00:00 on start date."""
   function datetime_range_after(start::DateTime )
     Dates.format(start,datefmt) * "/"

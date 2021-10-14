@@ -53,11 +53,11 @@ module NeidArchive
   Download files returned from a query of the NEID archive.
   Named argument cookiepath is required.
   """
-  function download(filename::String, datalevel::String; format::String = default_format, outdir::String=".", cookiepath::String = "", start_row::Integer=1, end_row::Integer=1000)
+  function download(filename::String, datalevel::String; format::String = default_format, outdir::String=".", cookiepath::String = "", start_row::Integer=0, end_row::Integer=1000)
     @assert datalevel ∈ valid_datalevel
     @assert format ∈ valid_format
-    @assert 1 <= start_row <= end_row
-    @assert end_row-start_row <= 1000
+    @assert 0 <= start_row <= end_row
+    @assert end_row-start_row <= 10000
 
     if length(cookiepath) >= 1
       archive.download(filename, datalevel, format, outdir, cookiepath=cookiepath, start_row=start_row, end_row=end_row)

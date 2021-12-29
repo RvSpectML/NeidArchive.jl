@@ -1,7 +1,7 @@
 name = "NeidArchive"
 uuid = "b2c48323-12ae-41a0-acdb-062d24b276bc"
 authors = ["Eric Ford"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 Conda = "8f4d0f93-b110-5947-807f-2305c1781a2d"

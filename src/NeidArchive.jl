@@ -28,9 +28,13 @@ module NeidArchive
       login(;userid, password, cookiepath)
   Login to the NEID archive at NExScI.  All three named arguments are required.  Login credentials stored in cookiepath.
   """
-  function login(;userid::String, password::String, cookiepath::String)
-    archive.login(userid=userid, password=password, cookiepath=cookiepath) #, debugfile="./archive.debug")
-  end
+  function login(;userid::String="", password::String="", cookiepath::String)
+    if length(userid)>=1 && length(password)>=1
+       archive.login(userid=userid, password=password, cookiepath=cookiepath) #, debugfile="./archive.debug")
+    else
+       archive.login(cookiepath=cookiepath) 
+    end
+ end
 
   """
       query_criteria(param::Dict{String,String}; cookiepath, [outpath] )
@@ -60,9 +64,21 @@ module NeidArchive
     @assert end_row-start_row <= 10000
 
     if length(cookiepath) >= 1
-      archive.download(filename, datalevel, format, outdir, cookiepath=cookiepath, start_row=start_row, end_row=end_row)
+      if start_row==0 && end_row==1000
+         println("# Calling pyNEID archive.download without start_row or end_row")
+         archive.download(filename, datalevel, format, outdir, cookiepath=cookiepath)
+      else
+         println("# Calling pyNEID archive.download with start_row=",start_row," end_row=",end_row)
+         archive.download(filename, datalevel, format, outdir, cookiepath=cookiepath, start_row=start_row, end_row=end_row)
+      end
     else
-      archive.download(filename, datalevel, format, outdir, start_row=start_row, end_row=end_row)
+      if start_row==0 && end_row==1000
+         println("# Calling pyNEID archive.download without start_row or end_row")
+         archive.download(filename, datalevel, format, outdir)
+      else
+         println("# Calling pyNEID archive.download with start_row=",start_row," end_row=",end_row)
+         archive.download(filename, datalevel, format, outdir, start_row=start_row, end_row=end_row)
+      end
     end
   end
 

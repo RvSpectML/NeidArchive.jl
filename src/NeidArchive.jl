@@ -1,5 +1,5 @@
 """ Julia interface to the PyNeid API for accessing the NEID archive at NExScI """
-__precompile__()
+__precompile__(false)
 module NeidArchive
   using PyCall
   using Dates
